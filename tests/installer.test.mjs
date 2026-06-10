@@ -132,15 +132,15 @@ describe("dna-spec installer", () => {
     // where the bin/ script imports from src/ but src/ is not in
     // the published files.
     const tmp = makeTempDir();
-    const tarballName = "dna-spec-test-tarball.tgz";
-    const tarball = path.join(tmp, tarballName);
     const pack = spawnSync("npm", ["pack", "--pack-destination", tmp], {
       encoding: "utf8",
     });
     expect(pack.status, `npm pack failed: ${pack.stderr}`).toBe(0);
-    // npm pack prints the produced filename to stdout (last non-empty line)
+    // npm pack prints the produced filename (relative) to stdout
+    // as the last non-empty line. Resolve it to the absolute path.
     const lines = pack.stdout.trim().split("\n").filter(Boolean);
-    const produced = lines[lines.length - 1].trim();
+    const producedName = lines[lines.length - 1].trim();
+    const produced = path.join(tmp, producedName);
     expect(fs.existsSync(produced), `expected tarball at ${produced}`).toBe(true);
 
     const extractDir = makeTempDir();
