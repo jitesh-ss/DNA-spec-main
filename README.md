@@ -33,27 +33,39 @@ when you're ready.
 
 ## Install
 
+**From GitHub (current — npm publish coming soon):**
+
+```bash
+# One-time install
+npm install -g github:rishi-ie/DNA-spec
+
+# Or with npx (no install needed)
+npx github:rishi-ie/DNA-spec --help
+```
+
+**From npm (once published):**
+
 ```bash
 npx dna-spec
 ```
 
-That's it. The skill lands in `~/.pi/agent/skills/dna-spec/` and Pi picks it
-up on the next launch.
+The skill lands in `~/.pi/agent/skills/dna-spec/` and Pi picks it up on
+the next launch.
 
 Other commands:
 
 ```bash
-npx dna-spec install       # default
-npx dna-spec update        # force-reinstall
-npx dna-spec uninstall     # remove
-npx dna-spec --help        # usage
+dna-spec install       # default
+dna-spec update        # force-reinstall
+dna-spec uninstall     # remove
+dna-spec --help        # usage
 ```
 
 The installer respects `PI_SKILLS_DIR` for non-default install locations
 (useful in CI):
 
 ```bash
-PI_SKILLS_DIR=/path/to/skills npx dna-spec install
+PI_SKILLS_DIR=/path/to/skills dna-spec install
 ```
 
 ## Use
