@@ -37,8 +37,8 @@ when you're ready.
 
 ```bash
 # Clone the repository
-git clone https://github.com/jitesh-ss/auto-breakthrough.git
-cd auto-breakthrough
+git clone https://github.com/jitesh-ss/DNA-spec-main.git
+cd DNA-spec-main
 
 # Install dependencies
 npm install
@@ -50,7 +50,7 @@ node bin/dna-spec.mjs install
 **Or with npx (no install needed):**
 
 ```bash
-npx github:jitesh-ss/auto-breakthrough --help
+npx github:jitesh-ss/DNA-spec-main --help
 ```
 
 **From npm (once published):**
