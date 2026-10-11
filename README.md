@@ -33,14 +33,24 @@ when you're ready.
 
 ## Install
 
-**From GitHub (current — npm publish coming soon):**
+**From GitHub:**
 
 ```bash
-# One-time install
-npm install -g github:rishi-ie/DNA-spec
+# Clone the repository
+git clone https://github.com/jitesh-ss/auto-breakthrough.git
+cd auto-breakthrough
 
-# Or with npx (no install needed)
-npx github:rishi-ie/DNA-spec --help
+# Install dependencies
+npm install
+
+# Install the skill into Pi
+node bin/dna-spec.mjs install
+```
+
+**Or with npx (no install needed):**
+
+```bash
+npx github:jitesh-ss/auto-breakthrough --help
 ```
 
 **From npm (once published):**
