@@ -14,7 +14,7 @@ import os from "node:os";
 const CLI = path.resolve("bin/dna-spec.mjs");
 
 function runCli(args, env = {}) {
-  return spawnSync("node", [CLI, ...args], {
+  return spawnSync(process.execPath, [CLI, ...args], {
     env: { ...process.env, ...env, NO_COLOR: "1" },
     encoding: "utf8",
   });
@@ -132,8 +132,10 @@ describe("dna-spec installer", () => {
     // where the bin/ script imports from src/ but src/ is not in
     // the published files.
     const tmp = makeTempDir();
-    const pack = spawnSync("npm", ["pack", "--pack-destination", tmp], {
+    const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
+    const pack = spawnSync(npmCmd, ["pack", "--pack-destination", tmp], {
       encoding: "utf8",
+      shell: process.platform === "win32",
     });
     expect(pack.status, `npm pack failed: ${pack.stderr}`).toBe(0);
     // npm pack prints the produced filename (relative) to stdout
@@ -149,7 +151,7 @@ describe("dna-spec installer", () => {
 
     const installDir = makeTempDir();
     const pkgBin = path.join(extractDir, "package", "bin", "dna-spec.mjs");
-    const r = spawnSync("node", [pkgBin, "install", "--dir", installDir], {
+    const r = spawnSync(process.execPath, [pkgBin, "install", "--dir", installDir], {
       env: { ...process.env, NO_COLOR: "1" },
       encoding: "utf8",
     });
